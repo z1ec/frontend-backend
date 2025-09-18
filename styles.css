@@ -1,0 +1,326 @@
+/* ===== БАЗОВЫЕ СТИЛИ И РЕСЕТ ===== */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+/* ===== ДИЗАЙН-ТОКЕНЫ ===== */
+:root {
+  /* Палитра */
+  --color-bg: #fff;
+  --color-fg: #0b0b0b;
+  --color-muted: #666;
+  --color-primary: #0a84ff;
+  --color-danger: #b00020;
+  
+  /* Типографика и размеры */
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 40px;
+  
+  /* Скругления и тени */
+  --radius: 12px;
+  --shadow: 0 1px 2px rgba(0,0,0,.08), 0 8px 24px rgba(0,0,0,.08);
+}
+
+
+/* Тёмная тема */
+body.theme-dark {
+  --color-bg: #0b0b0b;
+  --color-fg: #f5f5f5;
+  --color-muted: #aaa;
+  --color-primary: #6aa2ff;
+}
+
+/* ===== БАЗОВАЯ ТИПОГРАФИКА ===== */
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+
+/* ===== КОНТЕЙНЕР ===== */
+.container {
+  width: min(100% - 2 * var(--space-4), 1120px);
+  margin-inline: auto;
+}
+
+/* ===== ШАПКА И НАВИГАЦИЯ (БЭМ) ===== */
+.site-header {
+  background: var(--color-bg);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-muted);
+}
+
+.site-header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-header__brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.site-nav__list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--space-4);
+}
+
+.site-nav__link {
+  color: var(--color-fg);
+  text-decoration: none;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius);
+  transition: background-color 0.2s;
+}
+
+.site-nav__link:hover {
+  background-color: rgba(0,0,0,0.1);
+}
+
+.site-nav__link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.site-nav__link--active {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+/* ===== ХЛЕБНЫЕ КРОШКИ (БЭМ) ===== */
+.breadcrumbs {
+  padding: var(--space-3) 0;
+}
+
+.breadcrumbs__list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--space-2);
+}
+
+.breadcrumbs__link {
+  color: var(--color-muted);
+  text-decoration: none;
+}
+
+.breadcrumbs__link:hover {
+  color: var(--color-primary);
+}
+
+.breadcrumbs__item:not(:last-child)::after {
+  content: "→";
+  margin-left: var(--space-2);
+  color: var(--color-muted);
+}
+
+/* ===== СЕКЦИИ ===== */
+.section {
+  padding-block: var(--space-5);
+}
+
+.section__title {
+  margin: 0 0 var(--space-3);
+}
+
+/* ===== ФОРМА И МОДАЛКА (БЭМ) ===== */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.form__label {
+  display: block;
+  margin: 0 0 var(--space-1);
+  font-weight: 500;
+}
+
+.form__input,
+.form__select,
+.form__textarea {
+  width: 100%;
+  padding: var(--space-3);
+  border: 1px solid var(--color-muted);
+  border-radius: var(--radius);
+  font: inherit;
+  color: inherit;
+}
+
+.form__input:focus-visible,
+.form__select:focus-visible,
+.form__textarea:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.form__input[aria-invalid="true"],
+.form__select[aria-invalid="true"],
+.form__textarea[aria-invalid="true"] {
+  border-color: var(--color-danger);
+}
+
+.form__help {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  margin: var(--space-1) 0 0;
+}
+
+.form__actions {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+/* Модальное окно */
+.modal {
+  padding: var(--space-4);
+  border: none;
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  box-shadow: var(--shadow);
+  max-width: 600px;
+  width: 90%;
+}
+
+.modal::backdrop {
+  background: rgba(0,0,0,0.5);
+}
+
+.modal__title {
+  margin: 0 0 var(--space-3);
+}
+
+/* ===== КНОПКИ ===== */
+.btn {
+  padding: var(--space-3) var(--space-4);
+  border: none;
+  border-radius: var(--radius);
+  font: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+.btn--primary:hover {
+  background: color-mix(in srgb, var(--color-primary), black 15%);
+}
+
+.btn--primary:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.btn--secondary {
+  background: var(--color-muted);
+  color: white;
+}
+
+/* ===== ИЗОБРАЖЕНИЯ И МЕДИА ===== */
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.responsive-img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+.hero-section {
+  position: relative;
+  color: white;
+  padding: clamp(2rem, 6vw, 6rem) 1rem;
+  border-radius: var(--radius);
+  margin-bottom: var(--space-5);
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-section img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
+  z-index: -1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+.media-container {
+  aspect-ratio: 16/9;
+  width: min(100%, 960px);
+  margin-inline: auto;
+}
+
+.media-container iframe,
+.media-container video {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: var(--radius);
+}
+
+/* ===== СОСТОЯНИЯ И ДОСТУПНОСТЬ ===== */
+:where(a, button, input, select, textarea):focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+:disabled, [aria-disabled="true"] {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:target {
+  outline: 2px dashed var(--color-primary);
+  outline-offset: 4px;
+}
+
+/* ===== ФУТЕР ===== */
+.site-footer {
+  background: var(--color-muted);
+  color: white;
+  padding: var(--space-4) 0;
+  margin-top: var(--space-5);
+}
+
+.site-footer__container {
+  text-align: center;
+}
