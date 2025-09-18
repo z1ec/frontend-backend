@@ -5,45 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>О нас - Название вашего сайта</title>
     <meta name="description" content="Узнайте больше о нашей компании и истории">
+    <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <script src="main.js" defer></script>
 </head>
 <body>
-    <header>
-        <a href="/">Логотип или название сайта</a>
-        
-        <!-- Главное меню навигации -->
-        <nav>
-            <ul>
-                <li><a href="index.html">Главная</a></li>
-                <li><a href="about.html">О нас</a></li>
-                <li><a href="contacts.html">Контакты</a></li>
-            </ul>
-        </nav>
+    <header class="site-header">
+        <div class="container site-header__container">
+            <a class="site-header__brand" href="/">Логотип сайта</a>
+            
+            <nav class="site-nav" aria-label="Основная навигация">
+                <ul class="site-nav__list">
+                    <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
+                    <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" href="about.html">О нас</a></li>
+                    <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <!-- Простые "хлебные крошки" -->
-        <nav aria-label="Хлебные крошки">
-            <a href="index.html">Главная</a> →
-            <span>О нас</span>
+    <main class="container">
+        <!-- Хлебные крошки -->
+        <nav class="breadcrumbs" aria-label="Хлебные крошки">
+            <ul class="breadcrumbs__list">
+                <li class="breadcrumbs__item">
+                    <a class="breadcrumbs__link" href="index.html">Главная</a>
+                </li>
+                <li class="breadcrumbs__item">
+                    <span>О нас</span>
+                </li>
+            </ul>
         </nav>
 
-        <h1>О нашей компании</h1>
+        <h1 class="section__title">О нашей компании</h1>
 
-        <section>
-            <h2>Наша история</h2>
+        <section class="section">
+            <h2 class="section__title">Наша история</h2>
             <p>Текст о том, как все начиналось...</p>
         </section>
 
-        <section>
-            <h2>Наша команда</h2>
+        <section class="section">
+            <h2 class="section__title">Наша команда</h2>
             <p>Текст о команде...</p>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2023 Название вашего сайта. Все права защищены.</p>
-        <p>Телефон: +7 (123) 456-78-90</p>
+    <footer class="site-footer">
+        <div class="container site-footer__container">
+            <p>&copy; 2023 Название вашего сайта. Все права защищены.</p>
+            <p>Телефон: +7 (123) 456-78-90</p>
+        </div>
     </footer>
 </body>
 </html>

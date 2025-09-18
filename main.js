@@ -1,17 +1,58 @@
+// Управление модальным окном
 const dlg = document.getElementById('contactDialog');
 const openBtn = document.getElementById('openDialog');
 const closeBtn = document.getElementById('closeDialog');
 const form = document.getElementById('contactForm');
 let lastActive = null;
+
+// Открытие модалки
 openBtn.addEventListener('click', () => {
     lastActive = document.activeElement;
-    dlg.showModal(); // модальный режим +
-    затемнение
-    dlg.querySelector('input,select,textarea,button')?.focus();
+    dlg.showModal();
+    dlg.querySelector('input, select, textarea, button')?.focus();
 });
+
+// Закрытие модалки
 closeBtn.addEventListener('click', () => dlg.close('cancel'));
+
+// Обработка отправки формы
 form?.addEventListener('submit', (e) => {
-    // валидация см. 1.4.2; при успехе закрываем окно
+    e.preventDefault();
+    
+    // Простая валидация
+    let isValid = true;
+    const requiredFields = form.querySelectorAll('[required]');
+    
+    requiredFields.forEach(field => {
+        if (!field.value.trim()) {
+            field.setAttribute('aria-invalid', 'true');
+            isValid = false;
+        } else {
+            field.removeAttribute('aria-invalid');
+        }
+    });
+    
+    if (isValid) {
+        dlg.close('submit');
+        form.reset();
+    }
 });
-dlg.addEventListener('close', () => { lastActive?.focus(); });
-// Esc по умолчанию вызывает событие 'cancel' и закрывает <dialog>
+
+// Возврат фокуса после закрытия
+dlg.addEventListener('close', () => {
+    lastActive?.focus();
+});
+
+// Плавная прокрутка для якорных ссылок
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
